@@ -8,7 +8,7 @@ import { populateProperty } from './populate-property'
  */
 export async function populator(
   records: Array<BaseRecord>,
-  excludePopulate: Array<String>,
+  excludePopulate: Array<string> = [],
 ): Promise<Array<BaseRecord>> {
   if (!records || !records.length) {
     return records
@@ -16,7 +16,10 @@ export async function populator(
   const resourceDecorator = records[0].resource.decorate()
   const allProperties = Object.values(resourceDecorator.getFlattenProperties())
 
-  const references = allProperties.filter((p) => !!p.reference() && !excludePopulate.includes(p.name().toLocaleLowerCase()));
+  const references = allProperties.filter(
+    (p) => !!p.reference()
+    && !excludePopulate.includes(p.name().toLowerCase()),
+  )
 
   await Promise.all(references.map(async (propertyDecorator) => {
     await populateProperty(records, propertyDecorator)

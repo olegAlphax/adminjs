@@ -8,7 +8,7 @@ import { populateProperty } from './populate-property'
  */
 export async function populator(
   records: Array<BaseRecord>,
-  excludePopulate: Array<String>,
+  excludePopulate: Array<string> = [],
 ): Promise<Array<BaseRecord>> {
   if (!records || !records.length) {
     return records

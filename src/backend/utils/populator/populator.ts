@@ -16,7 +16,7 @@ export async function populator(
   const resourceDecorator = records[0].resource.decorate()
   const allProperties = Object.values(resourceDecorator.getFlattenProperties())
 
-  const lowercaseExclude = excludePopulate.map(str=>str.toLowerCase())
+  const lowercaseExclude = excludePopulate.map((str) => str.toLowerCase())
 
   const references = allProperties.filter(
     (p) => !!p.reference()

@@ -20,7 +20,7 @@ export async function populator(
 
   const references = allProperties.filter(
     (p) => !!p.reference()
-    && !lowercaseExclude.includes(p.name().toLowerCase()),
+      && !lowercaseExclude.includes(p.name().toLowerCase()),
   )
 
   await Promise.all(references.map(async (propertyDecorator) => {
